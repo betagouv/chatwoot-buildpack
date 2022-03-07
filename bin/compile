@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+# Debug, echo every command
+if [[ -n "$BUILDPACK_DEBUG" ]]; then
+  set -x
+fi
+
+# Fail immediately on non-zero exit code.
+set -e
+# Fail immediately on non-zero exit code within a pipeline.
+set -o pipefail
+# Fail on undeclared variables.
+set -u
+
+echo "=====> Start Chatwoot"
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+basedir="$( cd -P "$( dirname "$0" )" && pwd )"
+BP_DIR=`cd $(dirname $0); cd ..; pwd`
+TMP_PATH="$BUILD_DIR/tmp"
+mkdir -p "${TMP_PATH}" "${TMP_PATH}/chatwoot" "${CACHE_DIR}/dist" "$BUILD_DIR/static"
+source "${BP_DIR}/bin/install_chatwoot.sh"
+
+if [[ -f "$ENV_DIR/CHATWOOT_VERSION" ]]; then
+  CHATWOOT_VERSION=$(cat "$ENV_DIR/CHATWOOT_VERSION")
+else
+  CHATWOOT_VERSION="master"
+fi
+
+# install addons
+cd $BUILD_DIR
+fetch_chatwoot_dist "${TMP_PATH}" "${CHATWOOT_VERSION}"
+mv ${TMP_PATH}/chatwoot-${CHATWOOT_VERSION}/* "${BUILD_DIR}"
+rm -rf $TMP_PATH
+echo "scalingo-chatwoot-buildpack"
+
+cp $BP_DIR/scalingo.json $BUILD_DIR/scalingo.json
+# Use architecture of multi-buildpack to compose behavior.
+# https://github.com/Scalingo/multi-buildpack
+

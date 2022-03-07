@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Always accept the Chatwoot buildpack
+echo "Chatwoot"
+exit 0

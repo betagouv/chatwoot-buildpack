@@ -1,0 +1,17 @@
+{
+    "name": "App",
+    "description": "Chatwoot",
+    "keywords": [
+      "chatwoot"
+    ],
+    "env": {
+    },
+    "addons": ["postgresql:postgresql-sandbox"],
+    "formation": {
+      "web": {
+        "amount": 1,
+        "size": "S"
+      }
+    }
+}
+  

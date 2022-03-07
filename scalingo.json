@@ -6,7 +6,7 @@
     ],
     "env": {
     },
-    "addons": ["postgresql:postgresql-sandbox"],
+    "addons": ["postgresql:postgresql-sandbox", "redis:redis-sandbox"],
     "formation": {
       "web": {
         "amount": 1,

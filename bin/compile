@@ -33,7 +33,7 @@ fi
 # install addons
 cd $BUILD_DIR
 fetch_chatwoot_dist "${TMP_PATH}" "${CHATWOOT_VERSION}"
-mv ${TMP_PATH}/chatwoot-${CHATWOOT_VERSION}/* "${BUILD_DIR}"
+rsync -av ${TMP_PATH}/chatwoot-${CHATWOOT_VERSION}/* "${BUILD_DIR}"
 rm -rf $TMP_PATH
 echo "scalingo-chatwoot-buildpack"
 

@@ -20,7 +20,7 @@ CACHE_DIR=$2
 ENV_DIR=$3
 basedir="$( cd -P "$( dirname "$0" )" && pwd )"
 BP_DIR=`cd $(dirname $0); cd ..; pwd`
-TMP_PATH="$BUILD_DIR/tmp"
+TMP_PATH="$BUILD_DIR/temp"
 mkdir -p "${TMP_PATH}" "${TMP_PATH}/chatwoot" "${CACHE_DIR}/dist" "$BUILD_DIR/static"
 source "${BP_DIR}/bin/install_chatwoot.sh"
 

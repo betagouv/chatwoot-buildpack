@@ -11,6 +11,7 @@ function fetch_chatwoot_dist() {
     echo "Chatwoot backend installed"
     local dist="chatwoot"
     local dist_url="https://github.com/chatwoot/chatwoot/archive/refs/tags/v${version}.tar.gz"
+    echo $dist_url
     if [ -f "${CACHE_DIR}/dist/${dist}" ]; then
         echo "File is already downloaded"
     else

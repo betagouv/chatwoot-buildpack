@@ -1,6 +1,15 @@
 # chatwoot-buildpack
 Chatwoot Buildpack
 
+# Deployer l'app sur scalingo
+
+Ajouter le lien vers le buildpack dans un fichier .buildpacks
+Ajouter un addon redis et un addons postgresql à votre app
+Deployer
+Scaler le container release et le container worker, puis restart les 3 containers
+
+# ENV var pour la suite :
+
 # ENV var à définir
 
 ACTIVE_STORAGE_SERVICE=s3_compatible
@@ -10,9 +19,9 @@ DEFAULT_LOCALE='fr'
 ENABLE_ACCOUNT_SIGNUP=false
 FRONTEND_URL=url_du_site
 MAILER_SENDER_EMAIL=Equipe John Doe <votre@adresse.fr>
-POSTGRES_DATABASE=unnomdedb
-POSTGRES_PASSWORD=unpwdedb
-POSTGRES_USERNAME=unnomdedb
+#POSTGRES_DATABASE=unnomdedb
+#POSTGRES_PASSWORD=unpwdedb
+#POSTGRES_USERNAME=unnomdedb
 RACK_ENV=production
 RAILS_ENV=production
 REDIS_URL=$SCALINGO_REDIS_URL
@@ -26,7 +35,6 @@ STORAGE_BUCKET_NAME=
 STORAGE_ENDPOINT=
 STORAGE_REGION=
 STORAGE_SECRET_ACCESS_KEY=
-
 
 # DEBUG
 docker run --name chatwoot -it -p 8065:8065 -v "$(pwd)"/.env:/env/.env -v "$(pwd)":/buildpack scalingo/scalingo-18:latest bash

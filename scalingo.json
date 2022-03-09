@@ -5,10 +5,44 @@
       "chatwoot"
     ],
     "env": {
+      "RACK_ENV": {
+        "value": "production"
+      },
+      "RAIL_ENV": {
+        "value": "production"
+      },
+      "FRONTEND_URL": {
+        "generator": "url",
+        "template": "%URL%"
+      },
+      "SECRET_KEY_BASE": {
+        "generator": "secret"
+      },
+      "REDIS_URL": {
+        "value": "$SCALINGO_REDIS_URL"
+      },
+      "DATABASE_URL": {
+        "value": "$SCALINGO_POSTGRESQL_URL"
+      },
+      "DEFAULT_LOCALE": {
+        "value": "fr"
+      }
     },
-    "addons": ["postgresql:postgresql-sandbox", "redis:redis-sandbox"],
+    "addons": [{
+        "plan": "redis:redis-sandbox"
+    }, {
+      "plan": "postgresql:postgresql-sandbox"
+    }],
     "formation": {
       "web": {
+        "amount": 1,
+        "size": "S"
+      },
+      "release": {
+        "amount": 1,
+        "size": "S"
+      },
+      "worker": {
         "amount": 1,
         "size": "S"
       }

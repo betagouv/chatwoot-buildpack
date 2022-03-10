@@ -9,7 +9,7 @@ function fetch_chatwoot_dist() {
     local location="$1"
     local version="$2"
     echo "Chatwoot backend installed"
-    local dist="chatwoot"
+    local dist="chatwoot${version}"
     local dist_url="https://github.com/chatwoot/chatwoot/archive/refs/tags/v${version}.tar.gz"
     echo $dist_url
     if [ -f "${CACHE_DIR}/dist/${dist}" ]; then

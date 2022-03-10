@@ -46,6 +46,9 @@
         "amount": 1,
         "size": "S"
       }
+    },
+    "scripts": {
+      "postdeploy": "bundle exec rails db:chatwoot_prepare"
     }
 }
   

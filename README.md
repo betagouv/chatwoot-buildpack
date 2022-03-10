@@ -1,25 +1,25 @@
 # chatwoot-buildpack
 Chatwoot Buildpack
 
-# Deployer l'app sur scalingo
+# Deploy on scalingo
 
-Ajouter le lien vers le buildpack dans un fichier .buildpacks
-Ajouter un addon redis et un addons postgresql à votre app
-Deployer
-Scaler le container release et le container worker, puis restart les 3 containers
+- Add the link this buildpack in a .buildpacks file : https://github.com/betagouv/chatwoot-buildpack#main
+- In scalingo :
+    - set the chatwoot version in the env var : CHATWOOT_VERSION=2.2.1
+    - Add redis and postgresql addon to your app
+    - Deploy
+    - Scale release and worker container to 1 and restart all 3 container
 
-CHATWOOT_VERSION=2.2.1
+# Env var :
 
-# ENV var pour la suite :
-
-se crée automatiquement lors de l'ajout des addons dans l'interface scalingo
+Check that you have the following env var (they should be set automaticaly when adding addons)
 DATABASE_URL=$SCALINGO_POSTGRESQL_URL
 REDIS_URL=$SCALINGO_REDIS_URL
 
-# ENV var for prod :
+## ENV var for prod :
 SECRET_KEY_BASE=
 
-# ENV var à définir pour enregistrer les fichiers :
+## ENV var to store files on S3 storage :
 https://www.chatwoot.com/docs/self-hosted/deployment/storage/supported-providers
 ACTIVE_STORAGE_SERVICE=s3_compatible
 STORAGE_ACCESS_KEY_ID=
@@ -28,18 +28,20 @@ STORAGE_ENDPOINT=
 STORAGE_REGION=
 STORAGE_SECRET_ACCESS_KEY=
 
-# ENV var fr :
+## ENV var fr :
 DEFAULT_LOCALE='fr'
 
-# Env var extra :
+## Env var extra :
 ENABLE_ACCOUNT_SIGNUP=false
 FRONTEND_URL=url_du_site
 
-# To receive email :
-in the interface of a mailbox :
-`/app/accounts/1/settings/inboxes/1` define IMAP
+# Send and receive emails
 
-# To send email :
+## To receive email :
+When you create a mailbox then you should go to the interface of a mailbox :
+`/app/accounts/1/settings/inboxes/1` and define IMAP
+
+## To send email :
 Define default SMTP server via env var :
 SMTP_ADDRESS=
 SMTP_PASSWORD=

@@ -54,6 +54,17 @@ use same value for "Address" and "Domain"
 You can also set in env var :
 MAILER_SENDER_EMAIL=Equipe John Doe <votre@adresse.fr>
 
+# Clean up database to avoid error on release container :
+
+https://github.com/chatwoot/chatwoot/issues/3638
+
+Be carefull these commands will reset your db data
+in the bash of your container :
+```
+rake db:schema:load
+rake db:seed
+```
+
 # DEBUG BUILDPACK 
 docker run --name chatwoot -it -p 8065:8065 -v "$(pwd)"/.env:/env/.env -v "$(pwd)":/buildpack scalingo/scalingo-18:latest bash
 

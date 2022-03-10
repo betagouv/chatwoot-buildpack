@@ -16,6 +16,9 @@ se crée automatiquement lors de l'ajout des addons dans l'interface scalingo
 DATABASE_URL=$SCALINGO_POSTGRESQL_URL
 REDIS_URL=$SCALINGO_REDIS_URL
 
+# ENV var for prod :
+SECRET_KEY_BASE=
+
 # ENV var à définir pour enregistrer les fichiers :
 https://www.chatwoot.com/docs/self-hosted/deployment/storage/supported-providers
 ACTIVE_STORAGE_SERVICE=s3_compatible
@@ -31,22 +34,25 @@ DEFAULT_LOCALE='fr'
 # Env var extra :
 ENABLE_ACCOUNT_SIGNUP=false
 FRONTEND_URL=url_du_site
-SECRET_KEY_BASE=
 
 # To receive email :
 in the interface of a mailbox :
 `/app/accounts/1/settings/inboxes/1` define IMAP
 
 # To send email :
-using the interface `/app/accounts/1/settings/inboxes/1` to define SMTP seems broken, you should use env var for the time setting :
-
+Define default SMTP server via env var :
 SMTP_ADDRESS=
 SMTP_PASSWORD=
 SMTP_PORT=
 SMTP_USERNAME=
+
+Then in the interface `/app/accounts/1/settings/inboxes/1` you can define SMTP server for each inbox :
+use same value for "Address" and "Domain"
+
+You can also set in env var :
 MAILER_SENDER_EMAIL=Equipe John Doe <votre@adresse.fr>
 
-# DEBUG
+# DEBUG BUILDPACK 
 docker run --name chatwoot -it -p 8065:8065 -v "$(pwd)"/.env:/env/.env -v "$(pwd)":/buildpack scalingo/scalingo-18:latest bash
 
 bash buildpack/bin/detect

@@ -40,6 +40,7 @@ echo "scalingo-chatwoot-buildpack"
 cp $BP_DIR/scalingo.json $BUILD_DIR/scalingo.json
 cp $BP_DIR/.slugignore $BUILD_DIR/.slugignore
 cp $BP_DIR/.buildpacks $BUILD_DIR/.buildpacks
+mv -f $BP_DIR/Procfile $BUILD_DIR/Procfile
 
 url=https://github.com/Scalingo/multi-buildpack
 branch=""

@@ -10,6 +10,16 @@ Chatwoot Buildpack
     - Deploy
     - Scale release and worker container to 1 and restart all 3 container
 
+# Upgrade on Scalingo
+
+- read Chatwoot's Changelog and special upgrade instructions
+- backup your DB 
+- warn chatwoot's users, maybe turn off the web container a few minutes before
+- from Scalingo web dashboard:
+    - bump the `CHATWOOT_VERSION` env var on your Scalingo app
+    - trigger a manual deployment
+    - this should automatically run db migrations through `bundle exec rails db:chatwoot_prepare`
+
 # Env var :
 
 Check that you have the following env var (they should be set automaticaly when adding addons)
